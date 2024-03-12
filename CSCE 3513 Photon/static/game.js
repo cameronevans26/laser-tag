@@ -1,5 +1,3 @@
-
-
 let red_team = {
     PlayerName: [],
     EquipmentID: []
@@ -11,6 +9,8 @@ let green_team = {
 };
 
 function getRandomImageUrl() {
+    console.log(Math.floor(Math.random() * imageURLs.length));
+    console.log(imageURLs[Math.floor(Math.random() * imageURLs.length)]);
     return imageURLs[Math.floor(Math.random() * imageURLs.length)];
 }
 
@@ -87,6 +87,7 @@ function populate_scoreBoard(array, table_id) {
             const playerCell = document.createElement('td');
             const playerImage = document.createElement('img');
             playerImage.src = getRandomImageUrl();
+            console.log(playerImage.src);
             playerImage.alt = 'Player Image'; // Set the alt attribute
             playerCell.appendChild(playerImage); // Append the image to the cell
 
@@ -106,5 +107,26 @@ function populate_scoreBoard(array, table_id) {
         }) 
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const numberOfStars = 50; // Adjust the number of stars as needed
+    const starsContainer = document.querySelector('.stars');
 
+    for (let i = 0; i < numberOfStars; i++) {
+        createStar();
+    }
 
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        setStarPosition(star);
+        starsContainer.appendChild(star);
+    }
+
+    function setStarPosition(star) {
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+
+        star.style.left = `${posX}px`;
+        star.style.top = `${posY}px`;
+    }
+});
